@@ -32,6 +32,7 @@ public class aml {
             System.out.println("17. Eliminar Duplicado en una lista");
             System.out.println("18. Transpuesta de una matriz");
             System.out.println("19. Salir");
+            System.out.print("su eleccion es:");
             int list = leer.nextInt();
             switch (list) {
                 case 1:
@@ -353,16 +354,94 @@ public class aml {
     }
     public static void buscarelemento() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Por favor ingrese la cantidad de elementos de la lista: ");
+        System.out.println("Por favor ingrese la cantidad de elementos que va a tener lista: ");
         int nNumero = scanner.nextInt();
-        String nombres[] = new String[nNumero];
+        int Numero[] = new int[nNumero];
+        boolean creciente= true;
+        int BuscarNumero=0;
+        do{
+            System.out.println("Se van a ingresar los datos en la lista");
+            for (int i = 0; i < Numero.length; i++) {
+                System.out.print("Digite el numero "+(i+1)+ ": ");
+                Numero[i] = scanner.nextInt();
+            }
+            for (int i = 0; i < Numero.length-1; i++) {
+                if(Numero[i]<Numero[i+1]){
+                    creciente=true;
+                }
+                if(Numero[i]>Numero[i+1]){
+                    creciente=false;
+                    break;
+                }
+            }
+            if(creciente==false){
+                System.out.println("Los numeros ingresados no estan en orden, digite nuevamente en orden");
+            }
+        }while(creciente==false);
+
+        System.out.print("Por favor digite el numero a buscar en la lista: ");
+        BuscarNumero=scanner.nextInt();
+        int i=0;
+
+        while(i<Numero.length&&Numero[i]<BuscarNumero){
+            i++;
+        }
+        if(i==Numero.length){
+            System.out.println("El numero no ha sido encontrado");
+        }else{
+            if(Numero[i]==BuscarNumero){
+                System.out.println("El numero encontrado esta en la posicion "+i);
+                System.out.println("El numero es "+Numero[i]);
+            }else{
+                System.out.println("El numero no encontrado");
+            }
+        }
 
     }
     public static void duplicado() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Por favor ingrese la cantidad de elementos de la lista: ");
+        System.out.println("Por favor ingrese la cantidad de elementos que va a tener lista: ");
         int nNumero = scanner.nextInt();
-        String nombres[] = new String[nNumero];
+        int Numero[] = new int[nNumero];
+        boolean creciente= true;
+        int DuplicadoNumero=0;
+        do{
+            System.out.println("Se va a ingresar los datos en la lista");
+            for (int i = 0; i < Numero.length; i++) {
+                System.out.print("Digite el numero "+(i+1)+ ": ");
+                Numero[i] = scanner.nextInt();
+            }
+            for (int i = 0; i < Numero.length-1; i++) {
+                if(Numero[i]<Numero[i+1]){
+                    creciente=true;
+                }
+                if(Numero[i]>Numero[i+1]){
+                    creciente=false;
+                    break;
+                }
+            }
+            if(creciente==false){
+                System.out.println("Los numeros ingresados no estan en orden, digite nuevamente en orden");
+            }
+        }while(creciente==false);
+        int j,k,l;
+        for(j=0;j<Numero.length;j++){
+            k=j+1;
+            while(k<nNumero){
+                if(Numero[j]==Numero[k]){
+                    for (l=k;l<Numero.length-1;l++){
+                        Numero[l]=Numero[l+1];
+                    }
+                    (nNumero)--;
+                }else{
+                    k++;
+                }
+            }
+        }
+        for (int i = 0; i < nNumero; i++) {
+            System.out.println("El Nuevo Arreglo es "+(i+1)+": " +Numero[i]);
+        }
+
 
     }
     public static void transpuesta() {
@@ -393,7 +472,7 @@ public class aml {
         System.out.println("La matriz Transpuesta es:");
         for (int i = 0; i < 3; i++) {
             for ( int j = 0; j < 3; j++) {
-                System.out.print(" "+matrizt[i][j]+" ");
+                System.out.println(" "+matrizt[i][j]+" ");
             }
         }
         System.out.println("");
